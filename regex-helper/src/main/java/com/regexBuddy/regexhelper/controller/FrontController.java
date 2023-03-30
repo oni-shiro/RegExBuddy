@@ -7,15 +7,13 @@ import com.regexBuddy.regexhelper.dtos.UserRequest;
 import com.regexBuddy.regexhelper.dtos.UserResponse;
 import com.regexBuddy.regexhelper.service.GptService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-@RestController(value = "/regex-buddy")
+@RestController()
+@RequestMapping("/regex-buddy")
 public class FrontController {
 
 
@@ -26,7 +24,7 @@ public class FrontController {
         return "Process is Deployed";
     }
 
-    @PostMapping(value = "/getResp")
+    @PostMapping(value = "/knowRegex")
     public UserResponse getRegexResponse(@RequestBody  UserRequest userRequest) throws URISyntaxException, IOException {
         return gptService.getGptResponse(userRequest);
     }
