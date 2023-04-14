@@ -1,8 +1,7 @@
 package com.regexBuddy.regexhelper.controller;
 
 
-import com.google.gson.JsonObject;
-import com.regexBuddy.regexhelper.dtos.ChatCompletion;
+
 import com.regexBuddy.regexhelper.dtos.UserRequest;
 import com.regexBuddy.regexhelper.dtos.UserResponse;
 import com.regexBuddy.regexhelper.service.GptService;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 @RestController()
-@RequestMapping("/regex-buddy")
+@RequestMapping("/regex-buddy/regex")
 public class FrontController {
 
 
@@ -27,6 +26,12 @@ public class FrontController {
     @PostMapping(value = "/knowRegex")
     public UserResponse getRegexResponse(@RequestBody  UserRequest userRequest) throws URISyntaxException, IOException {
         return gptService.getGptResponse(userRequest);
+    }
+
+    @GetMapping(value = "/explain")
+    public UserResponse getRegexByGetMethod(@RequestParam("regex") String reg) throws URISyntaxException, IOException {
+        return gptService.gptRequestWrapper(reg);
+
     }
 
 

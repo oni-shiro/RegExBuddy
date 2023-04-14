@@ -81,4 +81,10 @@ public class GptService {
         resp.setResponse(updatedContent);
         return resp;
     }
+    public UserResponse gptRequestWrapper(String reg) throws URISyntaxException, IOException {
+        UserRequest userRequest = new UserRequest();
+        userRequest.setRegularExpression(reg);
+        return getGptResponse(userRequest);
+
+    }
 }
